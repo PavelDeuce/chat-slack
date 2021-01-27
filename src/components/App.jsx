@@ -1,21 +1,17 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
+
+import Channels from './Channels/Channels';
+import Messages from './Messages/Messages';
 
 const App = (props) => {
   const { channels } = props;
 
   return (
-    <ListGroup>
-      {channels.map((channel) => {
-        const { id, name } = channel;
-
-        return (
-          <ListGroupItem key={id}>
-            {name}
-          </ListGroupItem>
-        );
-      })}
-    </ListGroup>
+    <Row className="h-100 pb-3">
+      <Channels channels={channels} />
+      <Messages />
+    </Row>
   );
 };
 
