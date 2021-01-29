@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
+import { useSelector } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 
 import { addMessageToChannel } from '../../service';
@@ -7,6 +8,7 @@ import UsernameContext from '../../utils/UsernameContext';
 
 const MessageForm = () => {
   const username = useContext(UsernameContext);
+  const { currentChannelId } = useSelector((state) => state.channels);
 
   const formik = useFormik({
     initialValues: { message: '' },
@@ -17,7 +19,8 @@ const MessageForm = () => {
         date: new Date(),
       };
 
-      await addMessageToChannel(1, attributes);
+      await addMessageToChannel(currentChannelId, attributes);
+      formik.resetForm();
     },
   });
 

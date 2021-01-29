@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import routes from './routes';
 
-const addChannel = (name) => axios.post(routes.channelsPath(), { data: { name } });
+const addChannel = (name) => axios.post(routes.channelsPath(), { data: { attributes: { name } } });
 
 const removeChannel = (channelId) => axios.delete(routes.channelPath(channelId));
 

@@ -6,9 +6,9 @@ const messages = createSlice({
     data: [],
   },
   reducers: {
-    addMessage(state, action) {
+    addMessage(draftState, action) {
       const { newMessage } = action.payload;
-      state.messages.data.push(newMessage);
+      draftState.data.push(newMessage);
     },
   },
 });
