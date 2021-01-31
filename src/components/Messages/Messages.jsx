@@ -23,7 +23,6 @@ const Messages = () => {
               <div className="text-break" key={id}>
                 <>
                   <b>{username}</b>
-                  {' '}
                   {body}
                 </>
               </div>

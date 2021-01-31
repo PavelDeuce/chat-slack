@@ -23,7 +23,9 @@ const RenameChannel = (props) => {
     <Form onSubmit={formik.handleSubmit}>
       <Modal.Header>
         <Modal.Title>Rename channel</Modal.Title>
-        <button type="button" className="close" onClick={onHide}>×</button>
+        <button type="button" className="close" onClick={onHide}>
+          ×
+        </button>
       </Modal.Header>
       <Modal.Body>
         <Form.Control
@@ -35,8 +37,12 @@ const RenameChannel = (props) => {
         />
       </Modal.Body>
       <Modal.Footer>
-        <button type="button" className="btn btn-secondary" onClick={onHide}>Cancel</button>
-        <button type="submit" className="btn btn-primary">Rename</button>
+        <button type="button" className="btn btn-secondary" onClick={onHide}>
+          Cancel
+        </button>
+        <button type="submit" className="btn btn-primary">
+          Rename
+        </button>
       </Modal.Footer>
     </Form>
   );

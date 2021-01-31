@@ -1,11 +1,18 @@
 import Cookies from 'js-cookie';
 import faker from 'faker';
 
-let userName = Cookies.get('userName');
+const getUserName = () => {
+  const savedUserName = Cookies.get('userName');
 
-if (userName === undefined) {
-  userName = faker.internet.userName();
-  Cookies.set('userName', userName, { expires: 1 });
-}
+  if (savedUserName === undefined) {
+    const newUserName = faker.internet.userName();
+    Cookies.set('userName', newUserName, { expires: 1 });
+    return newUserName;
+  }
+
+  return savedUserName;
+};
+
+const userName = getUserName();
 
 export default userName;

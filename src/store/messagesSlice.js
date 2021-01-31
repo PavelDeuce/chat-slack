@@ -22,8 +22,6 @@ const messages = createSlice({
 
 const { actions, reducer } = messages;
 
-export const {
-  addMessage,
-} = actions;
+export const { addMessage } = actions;
 
 export default reducer;

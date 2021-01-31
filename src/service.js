@@ -6,19 +6,10 @@ const addChannel = (name) => axios.post(routes.channelsPath(), { data: { attribu
 
 const removeChannel = (channelId) => axios.delete(routes.channelPath(channelId));
 
-const updateChannel = (channelId, name) => axios.patch(
-  routes.channelPath(channelId),
-  { data: { attributes: { name } } },
-);
+const updateChannel = (channelId, name) =>
+  axios.patch(routes.channelPath(channelId), { data: { attributes: { name } } });
 
-const addMessageToChannel = (channelId, attributes) => axios.post(
-  routes.channelMessagesPath(channelId),
-  { data: { attributes } },
-);
+const addMessageToChannel = (channelId, attributes) =>
+  axios.post(routes.channelMessagesPath(channelId), { data: { attributes } });
 
-export {
-  addChannel,
-  removeChannel,
-  updateChannel,
-  addMessageToChannel,
-};
+export { addChannel, removeChannel, updateChannel, addMessageToChannel };
