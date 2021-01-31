@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { removeChannel } from './channelsSlice';
 
 const messages = createSlice({
   name: 'messages',
@@ -9,6 +10,12 @@ const messages = createSlice({
     addMessage(draftState, action) {
       const { newMessage } = action.payload;
       draftState.data.push(newMessage);
+    },
+  },
+  extraReducers: {
+    [removeChannel](draftState, actions) {
+      const { id } = actions.payload;
+      draftState.data = draftState.data.filter((message) => message.channelId !== id);
     },
   },
 });

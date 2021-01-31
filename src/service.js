@@ -8,7 +8,7 @@ const removeChannel = (channelId) => axios.delete(routes.channelPath(channelId))
 
 const updateChannel = (channelId, name) => axios.patch(
   routes.channelPath(channelId),
-  { data: { name } },
+  { data: { attributes: { name } } },
 );
 
 const addMessageToChannel = (channelId, attributes) => axios.post(
