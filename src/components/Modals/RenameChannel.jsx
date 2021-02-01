@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 
 import { useFormik } from 'formik';
 import { updateChannel } from '../../service';
+import useFocus from '../../utils/useFocus';
 
 const RenameChannel = (props) => {
   const { onHide, data } = props;
+  const [inputRef, setInputFocus] = useFocus();
+
+  useEffect(() => {
+    setInputFocus();
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -34,6 +40,7 @@ const RenameChannel = (props) => {
           className="formControl"
           value={formik.values.channel}
           onChange={formik.handleChange}
+          ref={inputRef}
         />
       </Modal.Body>
       <Modal.Footer>

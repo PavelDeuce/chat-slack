@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 
 import { addChannel } from '../../service';
+import useFocus from '../../utils/useFocus';
 
 const AddChannel = (props) => {
   const { onHide } = props;
+  const [inputRef, setInputFocus] = useFocus();
 
-  // 1-19 symbols length of chat
+  useEffect(() => {
+    setInputFocus();
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -35,6 +39,7 @@ const AddChannel = (props) => {
           className="formControl"
           value={formik.values.channel}
           onChange={formik.handleChange}
+          ref={inputRef}
         />
       </Modal.Body>
       <Modal.Footer>

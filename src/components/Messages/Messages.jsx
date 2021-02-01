@@ -11,10 +11,10 @@ const Messages = () => {
     currentChannelId: state.channels.currentChannelId,
   }));
 
-  const endOfChat = useRef(null);
+  const bottomOfChat = useRef(null);
 
   useEffect(() => {
-    endOfChat.current.scrollIntoView({ behavior: 'smooth' });
+    bottomOfChat.current.scrollIntoView({ behavior: 'smooth' });
   });
 
   const messagesByChannelId = messages.filter((message) => message.channelId === currentChannelId);
@@ -40,7 +40,7 @@ const Messages = () => {
               </div>
             );
           })}
-          <div ref={endOfChat} />
+          <div ref={bottomOfChat} />
         </div>
         <MessageForm />
       </div>

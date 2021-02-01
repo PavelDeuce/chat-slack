@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Button, Form, Modal } from 'react-bootstrap';
 
 import { removeChannel } from '../../service';
+import useFocus from '../../utils/useFocus';
 
 const RemoveChannel = (props) => {
   const { onHide, data } = props;
   const { id, name } = data;
+
+  const [deleteButtonRef, setDeleteButtonFocus] = useFocus();
+
+  useEffect(() => {
+    setDeleteButtonFocus();
+  });
 
   const formik = useFormik({
     initialValues: {},
@@ -34,7 +41,7 @@ const RemoveChannel = (props) => {
         <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
         </Button>
-        <Button variant="danger" type="submit">
+        <Button variant="danger" type="submit" ref={deleteButtonRef}>
           Delete
         </Button>
       </Modal.Footer>
