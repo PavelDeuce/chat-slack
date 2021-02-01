@@ -24,7 +24,9 @@ const Messages = () => {
       <div className="d-flex flex-column h-100">
         <div className="overflow-auto mb-3">
           {messagesByChannelId.map((message) => {
-            const { id, username, body, date } = message;
+            const {
+              id, username, body, date,
+            } = message;
             const formattedDate = moment(date).fromNow();
 
             return (

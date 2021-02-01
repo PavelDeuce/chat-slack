@@ -21,4 +21,6 @@ const reducerNames = {
   modals: 'modals',
 };
 
-export { cookiesParams, modalKinds, socketEvents, reducerNames };
+export {
+  cookiesParams, modalKinds, socketEvents, reducerNames,
+};
