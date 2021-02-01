@@ -1,5 +1,14 @@
 import React, { useEffect } from 'react';
-import { Col, Dropdown, Nav, NavItem, NavLink, ButtonGroup } from 'react-bootstrap';
+import {
+  Col,
+  Dropdown,
+  Nav,
+  NavItem,
+  NavLink,
+  Button,
+  ButtonGroup,
+  Container,
+} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import classnames from 'classnames';
 
@@ -34,12 +43,12 @@ const Channels = () => {
 
   return (
     <Col className="col-3 border-right h-100 overflow-auto">
-      <div className="d-flex mb-2">
+      <Container className="d-flex mb-2">
         <span>Channels</span>
-        <button type="button" className="ml-auto p-0 btn btn-link" onClick={handleAddChannel}>
+        <Button variant="light" type="button" className="ml-auto p-0" onClick={handleAddChannel}>
           +
-        </button>
-      </div>
+        </Button>
+      </Container>
       <Nav
         variant="pills"
         className="flex-column"
@@ -56,7 +65,10 @@ const Channels = () => {
               as={ButtonGroup}
               className="d-flex justify-content-between mb-1 text-left"
             >
-              <NavLink eventKey={id} className={classnames(btnTypeClass, 'w-100 rounded-0')}>
+              <NavLink
+                eventKey={id}
+                className={classnames(btnTypeClass, 'w-100 text-break rounded-0')}
+              >
                 <span>{name}</span>
               </NavLink>
               {removable && (

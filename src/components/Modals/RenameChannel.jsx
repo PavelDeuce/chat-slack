@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Modal } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 import { useFormik } from 'formik';
 import { updateChannel } from '../../service';
@@ -23,9 +23,9 @@ const RenameChannel = (props) => {
     <Form onSubmit={formik.handleSubmit}>
       <Modal.Header>
         <Modal.Title>Rename channel</Modal.Title>
-        <button type="button" className="close" onClick={onHide}>
+        <Button type="button" className="close" onClick={onHide}>
           ×
-        </button>
+        </Button>
       </Modal.Header>
       <Modal.Body>
         <Form.Control
@@ -37,12 +37,12 @@ const RenameChannel = (props) => {
         />
       </Modal.Body>
       <Modal.Footer>
-        <button type="button" className="btn btn-secondary" onClick={onHide}>
+        <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
-        </button>
-        <button type="submit" className="btn btn-primary">
+        </Button>
+        <Button variant="primary" type="submit">
           Rename
-        </button>
+        </Button>
       </Modal.Footer>
     </Form>
   );

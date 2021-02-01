@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { Form, Modal } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 import { removeChannel } from '../../service';
 
@@ -20,9 +20,9 @@ const RemoveChannel = (props) => {
     <Form onSubmit={formik.handleSubmit}>
       <Modal.Header>
         <Modal.Title>Remove channel</Modal.Title>
-        <button type="button" className="close" onClick={onHide}>
+        <Button type="button" className="close" onClick={onHide}>
           ×
-        </button>
+        </Button>
       </Modal.Header>
       <Modal.Body>
         Delete a channel with name
@@ -31,12 +31,12 @@ const RemoveChannel = (props) => {
         {'?'}
       </Modal.Body>
       <Modal.Footer>
-        <button type="button" className="btn btn-secondary" onClick={onHide}>
+        <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
-        </button>
-        <button type="submit" className="btn btn-danger">
+        </Button>
+        <Button variant="danger" type="submit">
           Delete
-        </button>
+        </Button>
       </Modal.Footer>
     </Form>
   );

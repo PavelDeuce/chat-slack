@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 
 import { addMessageToChannel } from '../../service';
 import UsernameContext from '../../utils/UsernameContext';
@@ -25,9 +25,10 @@ const MessageForm = () => {
   });
 
   return (
-    <div className="mt-auto mb-1">
-      <form className="input-form-group" onSubmit={formik.handleSubmit}>
-        <FormControl
+    <Container className="mt-auto mb-1">
+      <Form className="input-form-group" onSubmit={formik.handleSubmit}>
+        <Form.Control
+          autoFocus
           value={formik.values.message}
           onChange={formik.handleChange}
           name="message"
@@ -37,8 +38,8 @@ const MessageForm = () => {
         <Button type="submit" className="btn btn-primary">
           Submit
         </Button>
-      </form>
-    </div>
+      </Form>
+    </Container>
   );
 };
 

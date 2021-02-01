@@ -1,11 +1,13 @@
 import React from 'react';
-import { Modal, Form } from 'react-bootstrap';
+import { Modal, Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 
 import { addChannel } from '../../service';
 
 const AddChannel = (props) => {
   const { onHide } = props;
+
+  // 1-19 symbols length of chat
 
   const formik = useFormik({
     initialValues: {
@@ -22,9 +24,9 @@ const AddChannel = (props) => {
     <Form onSubmit={formik.handleSubmit}>
       <Modal.Header>
         <Modal.Title>Add channel</Modal.Title>
-        <button type="button" className="close" onClick={onHide}>
+        <Button type="button" className="close" onClick={onHide}>
           ×
-        </button>
+        </Button>
       </Modal.Header>
       <Modal.Body>
         <Form.Control
@@ -36,12 +38,12 @@ const AddChannel = (props) => {
         />
       </Modal.Body>
       <Modal.Footer>
-        <button type="button" className="btn btn-secondary" onClick={onHide}>
+        <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
-        </button>
-        <button type="submit" className="btn btn-primary">
+        </Button>
+        <Button variant="primary" type="submit">
           Submit
-        </button>
+        </Button>
       </Modal.Footer>
     </Form>
   );
