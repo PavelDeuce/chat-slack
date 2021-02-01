@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialModalState = {
+  modalState: {
+    data: {},
+    isOpen: false,
+    kind: '',
+  },
+};
+
 const modals = createSlice({
   name: 'modals',
   initialState: {
-    modalState: {
-      data: {},
-      isOpen: false,
-      kind: '',
-    },
+    modalState: initialModalState,
   },
   reducers: {
     openModal(draftState, action) {
@@ -17,11 +21,7 @@ const modals = createSlice({
       draftState.modalState.kind = kind;
     },
     hideModal(draftState) {
-      draftState.modalState = {
-        data: {},
-        isOpen: false,
-        kind: '',
-      };
+      draftState.modalState = initialModalState;
     },
   },
 });
