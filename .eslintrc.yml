@@ -32,9 +32,3 @@ rules:
   functional/functional-parameters: 0
   functional/no-try-statement: 0
   functional/no-throw-statement: 0
-
-overrides:
-  - files: "*Slice.js"
-    rules:
-      no-param-reassign: 0
-

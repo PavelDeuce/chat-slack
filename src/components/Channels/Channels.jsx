@@ -24,7 +24,7 @@ const Channels = () => {
     if (currentChannelId === null) {
       dispatch(switchChannel({ id: channels[0].id }));
     }
-  }, [currentChannelId, channels]);
+  }, [currentChannelId, channels, dispatch]);
 
   const handleSelectChannel = (id) => {
     dispatch(switchChannel({ id: Number(id) }));
