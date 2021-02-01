@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+
+import { reducerNames } from '../utils/appConstants';
 import { removeChannel } from './channelsSlice';
 
 const messages = createSlice({
-  name: 'messages',
+  name: reducerNames.messages,
   initialState: {
     data: [],
   },

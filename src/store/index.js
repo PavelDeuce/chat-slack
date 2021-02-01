@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { reducerNames } from '../utils/appConstants';
 import messagesReducer from './messagesSlice';
 import channelsReducer from './channelsSlice';
 import modalsReducer from './modalsSlice';
 
 const reducer = {
-  messages: messagesReducer,
-  channels: channelsReducer,
-  modals: modalsReducer,
+  [reducerNames.messages]: messagesReducer,
+  [reducerNames.channels]: channelsReducer,
+  [reducerNames.modals]: modalsReducer,
 };
 
 const { messages, channels } = window.gon;

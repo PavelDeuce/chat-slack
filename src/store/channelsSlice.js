@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { reducerNames } from '../utils/appConstants';
+
 const channels = createSlice({
-  name: 'channels',
+  name: reducerNames.channels,
   initialState: {
     data: [],
   },

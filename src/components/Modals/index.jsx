@@ -6,11 +6,12 @@ import AddChannel from './AddChannel';
 import RenameChannel from './RenameChannel';
 import RemoveChannel from './RemoveChannel';
 import { hideModal } from '../../store/modalsSlice';
+import { modalKinds } from '../../utils/appConstants';
 
 const modalsMap = {
-  addChannel: AddChannel,
-  renameChannel: RenameChannel,
-  removeChannel: RemoveChannel,
+  [modalKinds.addChannel]: AddChannel,
+  [modalKinds.renameChannel]: RenameChannel,
+  [modalKinds.removeChannel]: RemoveChannel,
 };
 
 const ModalContainer = (props) => {

@@ -13,21 +13,22 @@ import UsernameContext from './utils/UsernameContext';
 import store from './store';
 import { addMessage } from './store/messagesSlice';
 import { addChannel, removeChannel, renameChannel } from './store/channelsSlice';
+import { socketEvents } from './utils/appConstants';
 import userName from './utils/usernameCookies';
 
 import '../assets/application.scss';
 
 io()
-  .on('newMessage', ({ data }) => {
+  .on(socketEvents.newMessage, ({ data }) => {
     store.dispatch(addMessage({ newMessage: data.attributes }));
   })
-  .on('newChannel', ({ data }) => {
+  .on(socketEvents.newChannel, ({ data }) => {
     store.dispatch(addChannel({ newChannel: data.attributes }));
   })
-  .on('renameChannel', ({ data }) => {
+  .on(socketEvents.renameChannel, ({ data }) => {
     store.dispatch(renameChannel({ id: data.id, name: data.attributes.name }));
   })
-  .on('removeChannel', ({ data }) => {
+  .on(socketEvents.removeChannel, ({ data }) => {
     store.dispatch(removeChannel({ id: data.id }));
   });
 

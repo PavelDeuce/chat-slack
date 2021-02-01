@@ -14,6 +14,7 @@ import classnames from 'classnames';
 
 import { switchChannel } from '../../store/channelsSlice';
 import { openModal } from '../../store/modalsSlice';
+import { modalKinds } from '../../utils/appConstants';
 
 const Channels = () => {
   const dispatch = useDispatch();
@@ -30,15 +31,15 @@ const Channels = () => {
   };
 
   const handleAddChannel = () => {
-    dispatch(openModal({ data: {}, kind: 'addChannel' }));
+    dispatch(openModal({ data: {}, kind: modalKinds.addChannel }));
   };
 
   const handleRenameChannel = (id, name) => () => {
-    dispatch(openModal({ data: { id, name }, kind: 'renameChannel' }));
+    dispatch(openModal({ data: { id, name }, kind: modalKinds.renameChannel }));
   };
 
   const handleRemoveChannel = (id, name) => () => {
-    dispatch(openModal({ data: { id, name }, kind: 'removeChannel' }));
+    dispatch(openModal({ data: { id, name }, kind: modalKinds.removeChannel }));
   };
 
   return (

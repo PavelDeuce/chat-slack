@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { reducerNames } from '../utils/appConstants';
+
 const initialModalState = {
   modalState: {
     data: {},
@@ -9,7 +11,7 @@ const initialModalState = {
 };
 
 const modals = createSlice({
-  name: 'modals',
+  name: reducerNames.modals,
   initialState: {
     modalState: initialModalState,
   },
