@@ -33,7 +33,7 @@ const Channels = () => {
   };
 
   return (
-    <Col className="col-3 border-right">
+    <Col className="col-3 border-right h-100 overflow-auto">
       <div className="d-flex mb-2">
         <span>Channels</span>
         <button type="button" className="ml-auto p-0 btn btn-link" onClick={handleAddChannel}>
