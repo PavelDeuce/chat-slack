@@ -34,19 +34,20 @@ const Channels = () => {
     dispatch(openModal({ data: {}, kind: modalKinds.addChannel }));
   };
 
-  const handleRenameChannel = (id, name) => () => {
-    dispatch(openModal({ data: { id, name }, kind: modalKinds.renameChannel }));
-  };
-
-  const handleRemoveChannel = (id, name) => () => {
-    dispatch(openModal({ data: { id, name }, kind: modalKinds.removeChannel }));
+  const handleChangeChannel = (id, name, kind) => () => {
+    dispatch(openModal({ data: { id, name }, kind }));
   };
 
   return (
     <Col className="col-3 border-right h-100 overflow-auto">
       <Container className="d-flex mb-2">
         <span className="font-weight-bold">Channels</span>
-        <Button variant="light" type="button" className="ml-auto pt-0 pb-0 pl-1 pr-1" onClick={handleAddChannel}>
+        <Button
+          variant="light"
+          type="button"
+          className="ml-auto pt-0 pb-0 pl-1 pr-1"
+          onClick={handleAddChannel}
+        >
           +
         </Button>
       </Container>
@@ -80,9 +81,17 @@ const Channels = () => {
                   />
 
                   <Dropdown.Menu>
-                    <Dropdown.Item onClick={handleRenameChannel(id, name)}>Rename</Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={handleChangeChannel(id, name, modalKinds.renameChannel)}
+                    >
+                      Rename
+                    </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item onClick={handleRemoveChannel(id, name)}>Remove</Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={handleChangeChannel(id, name, modalKinds.removeChannel)}
+                    >
+                      Remove
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               )}

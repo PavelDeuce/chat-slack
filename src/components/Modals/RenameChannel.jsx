@@ -17,16 +17,16 @@ const RenameChannel = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      channel: data.name,
+      newChannelName: data.name,
     },
     onSubmit: async (values) => {
-      const { channel: newName } = values;
+      const { newChannelName: newName } = values;
       await updateChannel(data.id, newName);
       onHide();
     },
   });
 
-  const isDisabledButton = formik.isSubmitting || formik.values.channel === '';
+  const isDisabledButton = formik.isSubmitting || formik.values.newChannelName === '';
 
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -39,9 +39,9 @@ const RenameChannel = (props) => {
       <Modal.Body>
         <Form.Control
           placeholder="Rename channel"
-          name="channel"
+          name="newChannelName"
           className="formControl"
-          value={formik.values.channel}
+          value={formik.values.newChannelName}
           onChange={formik.handleChange}
           ref={inputRef}
         />
