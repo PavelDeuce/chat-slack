@@ -6,13 +6,13 @@ import {
 } from 'react-bootstrap';
 
 import { addMessageToChannel } from '../../service';
-import useFocus from '../../utils/useFocus';
+import UseFocus from '../../utils/UseFocus';
 import UsernameContext from '../../utils/UsernameContext';
 
 const MessageForm = () => {
   const username = useContext(UsernameContext);
   const { currentChannelId } = useSelector((state) => state.channels);
-  const [inputRef, setInputFocus] = useFocus();
+  const [inputRef, setInputFocus] = UseFocus();
 
   useEffect(() => {
     setInputFocus();

@@ -5,11 +5,11 @@ import {
 
 import { useFormik } from 'formik';
 import { updateChannel } from '../../service';
-import useFocus from '../../utils/useFocus';
+import UseFocus from '../../utils/UseFocus';
 
 const RenameChannel = (props) => {
   const { onHide, data } = props;
-  const [inputRef, setInputFocus] = useFocus();
+  const [inputRef, setInputFocus] = UseFocus();
 
   useEffect(() => {
     setInputFocus();

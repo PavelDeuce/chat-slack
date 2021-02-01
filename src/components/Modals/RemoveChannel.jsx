@@ -5,13 +5,13 @@ import {
 } from 'react-bootstrap';
 
 import { removeChannel } from '../../service';
-import useFocus from '../../utils/useFocus';
+import UseFocus from '../../utils/UseFocus';
 
 const RemoveChannel = (props) => {
   const { onHide, data } = props;
   const { id, name } = data;
 
-  const [deleteButtonRef, setDeleteButtonFocus] = useFocus();
+  const [deleteButtonRef, setDeleteButtonFocus] = UseFocus();
 
   useEffect(() => {
     setDeleteButtonFocus();
