@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
+import {
+  Button, Form, Modal, Spinner,
+} from 'react-bootstrap';
 
 import { useFormik } from 'formik';
 import { updateChannel } from '../../service';
@@ -17,13 +19,14 @@ const RenameChannel = (props) => {
     initialValues: {
       channel: data.name,
     },
-    onSubmit: async (values, actions) => {
+    onSubmit: async (values) => {
       const { channel: newName } = values;
       await updateChannel(data.id, newName);
-      actions.resetForm();
       onHide();
     },
   });
+
+  const isDisabledButton = formik.isSubmitting || formik.values.channel === '';
 
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -47,8 +50,12 @@ const RenameChannel = (props) => {
         <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
         </Button>
-        <Button variant="primary" type="submit">
-          Rename
+        <Button variant="primary" type="submit" disabled={isDisabledButton}>
+          {formik.isSubmitting ? (
+            <Spinner animation="border" role="status" variant="light" size="sm" />
+          ) : (
+            'Rename'
+          )}
         </Button>
       </Modal.Footer>
     </Form>

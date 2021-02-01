@@ -45,8 +45,8 @@ const Channels = () => {
   return (
     <Col className="col-3 border-right h-100 overflow-auto">
       <Container className="d-flex mb-2">
-        <span>Channels</span>
-        <Button variant="light" type="button" className="ml-auto p-0" onClick={handleAddChannel}>
+        <span className="font-weight-bold">Channels</span>
+        <Button variant="light" type="button" className="ml-auto pt-0 pb-0 pl-1 pr-1" onClick={handleAddChannel}>
           +
         </Button>
       </Container>

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
-import { Button, Form, Modal } from 'react-bootstrap';
+import {
+  Button, Form, Modal, Spinner,
+} from 'react-bootstrap';
 
 import { removeChannel } from '../../service';
 import useFocus from '../../utils/useFocus';
@@ -32,7 +34,7 @@ const RemoveChannel = (props) => {
         </Button>
       </Modal.Header>
       <Modal.Body>
-        Delete a channel with name
+        Do you want to delete a channel with name
         {' - '}
         {name}
         {'?'}
@@ -41,8 +43,9 @@ const RemoveChannel = (props) => {
         <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
         </Button>
-        <Button variant="danger" type="submit" ref={deleteButtonRef}>
-          Delete
+        <Button variant="danger" type="submit" ref={deleteButtonRef} disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? (<Spinner animation="border" role="status" variant="light" size="sm" />)
+            : 'Delete'}
         </Button>
       </Modal.Footer>
     </Form>

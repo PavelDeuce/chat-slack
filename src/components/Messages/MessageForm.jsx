@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
-import { Button, Container, Form } from 'react-bootstrap';
+import {
+  Button, Container, Form, Spinner,
+} from 'react-bootstrap';
 
 import { addMessageToChannel } from '../../service';
 import useFocus from '../../utils/useFocus';
@@ -30,6 +32,8 @@ const MessageForm = () => {
     },
   });
 
+  const isDisabledButton = formik.isSubmitting || formik.values.message === '';
+
   return (
     <Container className="mt-auto mb-1">
       <Form className="input-form-group" onSubmit={formik.handleSubmit}>
@@ -41,8 +45,9 @@ const MessageForm = () => {
           className="mr-2 form-control"
           ref={inputRef}
         />
-        <Button type="submit" className="btn btn-primary">
-          Submit
+        <Button type="submit" className="btn btn-primary" disabled={isDisabledButton}>
+          {formik.isSubmitting ? (<Spinner animation="border" role="status" variant="light" size="sm" />)
+            : 'Submit'}
         </Button>
       </Form>
     </Container>

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import {
+  Modal, Form, Button, Spinner,
+} from 'react-bootstrap';
 import { useFormik } from 'formik';
 
 import { addChannel } from '../../service';
@@ -24,6 +26,8 @@ const AddChannel = (props) => {
     },
   });
 
+  const isDisabledButton = formik.isSubmitting || formik.values.channel === '';
+
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Modal.Header>
@@ -46,8 +50,12 @@ const AddChannel = (props) => {
         <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
         </Button>
-        <Button variant="primary" type="submit">
-          Submit
+        <Button variant="primary" type="submit" disabled={isDisabledButton}>
+          {formik.isSubmitting ? (
+            <Spinner animation="border" role="status" variant="light" size="sm" />
+          ) : (
+            'Add'
+          )}
         </Button>
       </Modal.Footer>
     </Form>
