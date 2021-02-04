@@ -11,7 +11,9 @@ import App from './components/App';
 import UsernameContext from './utils/UsernameContext';
 import store from './store';
 import { addMessage } from './store/messagesSlice';
-import { addChannel, removeChannel, renameChannel } from './store/channelsSlice';
+import {
+  addChannel, removeChannel, renameChannel, switchChannel,
+} from './store/channelsSlice';
 import { socketEvents } from './utils/appConstants';
 import getUserName from './utils/usernameCookies';
 import openSocket from './utils/openSocket';
@@ -25,6 +27,7 @@ socket.on(socketEvents.newMessage, ({ data }) => {
 });
 socket.on(socketEvents.newChannel, ({ data }) => {
   store.dispatch(addChannel({ newChannel: data.attributes }));
+  store.dispatch(switchChannel({ id: data.id }));
 });
 socket.on(socketEvents.renameChannel, ({ data }) => {
   store.dispatch(renameChannel({ id: data.id, name: data.attributes.name }));

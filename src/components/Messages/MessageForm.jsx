@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
-import {
-  Button, Container, Form, Spinner,
-} from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
+import * as Yup from 'yup';
 
 import { addMessageToChannel } from '../../service';
 import UseFocus from '../../utils/UseFocus';
@@ -20,6 +19,9 @@ const MessageForm = () => {
 
   const formik = useFormik({
     initialValues: { message: '' },
+    validationSchema: Yup.object({
+      message: Yup.string().trim().required('required'),
+    }),
     onSubmit: async (values) => {
       const attributes = {
         body: values.message,
@@ -32,10 +34,10 @@ const MessageForm = () => {
     },
   });
 
-  const isDisabledButton = formik.isSubmitting || formik.values.message === '';
+  const isDisabledButton = formik.isSubmitting || !formik.isValid;
 
   return (
-    <Container className="mt-auto mb-1">
+    <div className="mt-auto mb-1">
       <Form className="input-form-group" onSubmit={formik.handleSubmit}>
         <Form.Control
           value={formik.values.message}
@@ -46,11 +48,14 @@ const MessageForm = () => {
           ref={inputRef}
         />
         <Button type="submit" className="btn btn-primary" disabled={isDisabledButton}>
-          {formik.isSubmitting ? (<Spinner animation="border" role="status" variant="light" size="sm" />)
-            : 'Submit'}
+          {formik.isSubmitting ? (
+            <Spinner animation="border" role="status" variant="light" size="sm" />
+          ) : (
+            'Submit'
+          )}
         </Button>
       </Form>
-    </Container>
+    </div>
   );
 };
 

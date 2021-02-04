@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Button, Form, Modal, Spinner,
 } from 'react-bootstrap';
+import * as Yup from 'yup';
 
 import { useFormik } from 'formik';
 import { updateChannel } from '../../service';
@@ -9,6 +11,8 @@ import UseFocus from '../../utils/UseFocus';
 
 const RenameChannel = (props) => {
   const { onHide, data } = props;
+  const { channels } = useSelector((state) => state.channels);
+  const channelsNames = channels.map((ch) => ch.name);
   const [inputRef, setInputFocus] = UseFocus();
 
   useEffect(() => {
@@ -19,6 +23,9 @@ const RenameChannel = (props) => {
     initialValues: {
       newChannelName: data.name,
     },
+    validationSchema: Yup.object({
+      newChannelName: Yup.string().trim().required('required').notOneOf(channelsNames, 'exist'),
+    }),
     onSubmit: async (values) => {
       const { newChannelName: newName } = values;
       await updateChannel(data.id, newName);
@@ -26,7 +33,7 @@ const RenameChannel = (props) => {
     },
   });
 
-  const isDisabledButton = formik.isSubmitting || formik.values.newChannelName === '';
+  const isDisabledButton = formik.isSubmitting || !formik.isValid;
 
   return (
     <Form onSubmit={formik.handleSubmit}>
