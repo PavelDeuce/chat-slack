@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Col,
   Dropdown,
@@ -18,13 +18,7 @@ import { modalKinds } from '../../utils/appConstants';
 
 const Channels = () => {
   const dispatch = useDispatch();
-  const { data: channels, currentChannelId } = useSelector((state) => state.channels);
-
-  useEffect(() => {
-    if (currentChannelId === null) {
-      dispatch(switchChannel({ id: channels[0].id }));
-    }
-  }, [currentChannelId, channels, dispatch]);
+  const { channels, currentChannelId } = useSelector((state) => state.channels);
 
   const handleSelectChannel = (id) => {
     dispatch(switchChannel({ id: Number(id) }));

@@ -15,6 +15,4 @@ const getUserName = () => {
   return savedUserName;
 };
 
-const userName = getUserName();
-
-export default userName;
+export default getUserName;

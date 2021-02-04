@@ -2,12 +2,10 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { reducerNames } from '../utils/appConstants';
-
 const channels = createSlice({
-  name: reducerNames.channels,
+  name: 'channels',
   initialState: {
-    data: [],
+    channels: [],
   },
   reducers: {
     switchChannel(draftState, action) {
@@ -16,24 +14,16 @@ const channels = createSlice({
     },
     addChannel(draftState, action) {
       const { newChannel } = action.payload;
-      draftState.data.push(newChannel);
+      draftState.channels.push(newChannel);
     },
     renameChannel(draftState, action) {
       const { id, name } = action.payload;
-      const index = draftState.data.findIndex((item) => item.id === id);
-      const channel = draftState.data[index];
-      draftState.data[index] = {
-        ...channel,
-        name,
-      };
+      const channel = draftState.channels.find((ch) => ch.id === id);
+      channel.name = name;
     },
     removeChannel(draftState, action) {
       const { id } = action.payload;
-      draftState.data = draftState.data.filter((item) => item.id !== id);
-
-      if (id === draftState.currentChannelId) {
-        draftState.currentChannelId = null;
-      }
+      draftState.channels = draftState.channels.filter((ch) => ch.id !== id);
     },
   },
 });

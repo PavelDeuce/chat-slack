@@ -4,13 +4,17 @@ import {
   Button, Form, Modal, Spinner,
 } from 'react-bootstrap';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { removeChannel } from '../../service';
 import UseFocus from '../../utils/UseFocus';
+import { switchChannel } from '../../store/channelsSlice';
 
 const RemoveChannel = (props) => {
+  const dispatch = useDispatch();
   const { onHide, data } = props;
   const { id, name } = data;
 
+  const { defaultChannelId } = useSelector((state) => state.channels);
   const [deleteButtonRef, setDeleteButtonFocus] = UseFocus();
 
   useEffect(() => {
@@ -22,6 +26,7 @@ const RemoveChannel = (props) => {
     onSubmit: async () => {
       await removeChannel(id);
       onHide();
+      dispatch(switchChannel({ id: defaultChannelId }));
     },
   });
 

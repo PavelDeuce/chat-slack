@@ -7,7 +7,7 @@ import MessageForm from './MessageForm';
 
 const Messages = () => {
   const { messages, currentChannelId } = useSelector((state) => ({
-    messages: state.messages.data,
+    messages: state.messages.messages,
     currentChannelId: state.channels.currentChannelId,
   }));
 

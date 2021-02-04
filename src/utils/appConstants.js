@@ -15,12 +15,6 @@ const socketEvents = {
   renameChannel: 'renameChannel',
 };
 
-const reducerNames = {
-  messages: 'messages',
-  channels: 'channels',
-  modals: 'modals',
-};
-
 export {
-  cookiesParams, modalKinds, socketEvents, reducerNames,
+  cookiesParams, modalKinds, socketEvents,
 };

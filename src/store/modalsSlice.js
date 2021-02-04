@@ -2,18 +2,16 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { reducerNames } from '../utils/appConstants';
-
 const initialModalState = {
   modalState: {
-    data: {},
+    data: null,
     isOpen: false,
-    kind: '',
+    kind: null,
   },
 };
 
 const modals = createSlice({
-  name: reducerNames.modals,
+  name: 'modals',
   initialState: {
     modalState: initialModalState,
   },
