@@ -26,10 +26,15 @@ const RenameChannel = (props) => {
     validationSchema: Yup.object({
       newChannelName: Yup.string().trim().required('required').notOneOf(channelsNames, 'exist'),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, actions) => {
       const { newChannelName: newName } = values;
-      await updateChannel(data.id, newName);
-      onHide();
+
+      try {
+        await updateChannel(data.id, newName);
+        onHide();
+      } catch (error) {
+        actions.setFieldError('request', error);
+      }
     },
   });
 

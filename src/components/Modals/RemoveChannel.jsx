@@ -23,10 +23,14 @@ const RemoveChannel = (props) => {
 
   const formik = useFormik({
     initialValues: {},
-    onSubmit: async () => {
-      await removeChannel(id);
-      onHide();
-      dispatch(switchChannel({ id: defaultChannelId }));
+    onSubmit: async (values, actions) => {
+      try {
+        await removeChannel(id);
+        onHide();
+        dispatch(switchChannel({ id: defaultChannelId }));
+      } catch (error) {
+        actions.setFieldError('request', error);
+      }
     },
   });
 
@@ -49,8 +53,11 @@ const RemoveChannel = (props) => {
           Cancel
         </Button>
         <Button variant="danger" type="submit" ref={deleteButtonRef} disabled={formik.isSubmitting}>
-          {formik.isSubmitting ? (<Spinner animation="border" role="status" variant="light" size="sm" />)
-            : 'Delete'}
+          {formik.isSubmitting ? (
+            <Spinner animation="border" role="status" variant="light" size="sm" />
+          ) : (
+            'Delete'
+          )}
         </Button>
       </Modal.Footer>
     </Form>

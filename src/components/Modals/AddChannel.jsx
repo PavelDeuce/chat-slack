@@ -28,9 +28,14 @@ const AddChannel = (props) => {
     }),
     onSubmit: async (values, actions) => {
       const { channel: name } = values;
-      await addChannel(name);
-      actions.resetForm();
-      onHide();
+
+      try {
+        actions.resetForm();
+        await addChannel(name);
+        onHide();
+      } catch (error) {
+        actions.setFieldError('request', error);
+      }
     },
   });
 

@@ -22,15 +22,19 @@ const MessageForm = () => {
     validationSchema: Yup.object({
       message: Yup.string().trim().required('required'),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, actions) => {
       const attributes = {
         body: values.message,
         username,
         date: new Date(),
       };
 
-      await addMessageToChannel(currentChannelId, attributes);
-      formik.resetForm();
+      try {
+        formik.resetForm();
+        await addMessageToChannel(currentChannelId, attributes);
+      } catch (error) {
+        actions.setFieldError('request', error);
+      }
     },
   });
 
