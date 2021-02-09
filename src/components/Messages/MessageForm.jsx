@@ -50,7 +50,14 @@ const MessageForm = () => {
           type="text"
           className="mr-2 form-control"
           ref={inputRef}
+          isInvalid={formik.errors.request}
         />
+        {formik.errors.request
+        && (
+          <Form.Control.Feedback type="invalid">
+            Connection problem
+          </Form.Control.Feedback>
+        )}
         <Button type="submit" className="btn btn-primary" disabled={isDisabledButton}>
           {formik.isSubmitting ? (
             <Spinner animation="border" role="status" variant="light" size="sm" />

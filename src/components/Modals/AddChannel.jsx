@@ -57,7 +57,20 @@ const AddChannel = (props) => {
           value={formik.values.channel}
           onChange={formik.handleChange}
           ref={inputRef}
+          isInvalid={formik.errors.channel}
         />
+        {formik.errors.channel === 'exist'
+          && (
+          <Form.Control.Feedback type="invalid">
+            The channel with this name already exists
+          </Form.Control.Feedback>
+          )}
+        {formik.errors.request
+        && (
+          <Form.Control.Feedback type="invalid">
+            Connection problem
+          </Form.Control.Feedback>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" type="button" onClick={onHide}>

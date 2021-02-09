@@ -14,7 +14,7 @@ const RemoveChannel = (props) => {
   const { onHide, data } = props;
   const { id, name } = data;
 
-  const { defaultChannelId } = useSelector((state) => state.channels);
+  const { defaultChannelId, currentChannelId } = useSelector((state) => state.channels);
   const [deleteButtonRef, setDeleteButtonFocus] = UseFocus();
 
   useEffect(() => {
@@ -27,7 +27,10 @@ const RemoveChannel = (props) => {
       try {
         await removeChannel(id);
         onHide();
-        dispatch(switchChannel({ id: defaultChannelId }));
+
+        if (id === currentChannelId) {
+          dispatch(switchChannel({ id: defaultChannelId }));
+        }
       } catch (error) {
         actions.setFieldError('request', error);
       }
@@ -48,6 +51,12 @@ const RemoveChannel = (props) => {
         {name}
         {'?'}
       </Modal.Body>
+      {formik.errors.request
+      && (
+        <div className="alert alert-danger" role="alert">
+          Connection problem
+        </div>
+      )}
       <Modal.Footer>
         <Button variant="secondary" type="button" onClick={onHide}>
           Cancel
