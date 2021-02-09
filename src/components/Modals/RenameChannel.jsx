@@ -56,7 +56,7 @@ const RenameChannel = (props) => {
           value={formik.values.newChannelName}
           onChange={formik.handleChange}
           ref={inputRef}
-          isInvalid={formik.errors.newChannelName}
+          isInvalid={formik.errors.newChannelName || formik.errors.request}
         />
         {formik.errors.newChannelName === 'exist'
         && (

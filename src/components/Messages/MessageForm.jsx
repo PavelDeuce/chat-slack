@@ -42,22 +42,24 @@ const MessageForm = () => {
 
   return (
     <div className="mt-auto mb-1">
-      <Form className="input-form-group" onSubmit={formik.handleSubmit}>
-        <Form.Control
-          value={formik.values.message}
-          onChange={formik.handleChange}
-          name="message"
-          type="text"
-          className="mr-2 form-control"
-          ref={inputRef}
-          isInvalid={formik.errors.request}
-        />
-        {formik.errors.request
-        && (
-          <Form.Control.Feedback type="invalid">
-            Connection problem
-          </Form.Control.Feedback>
-        )}
+      <Form className="d-flex align-items-baseline" onSubmit={formik.handleSubmit}>
+        <div className="input-form-group mr-2">
+          <Form.Control
+            value={formik.values.message}
+            onChange={formik.handleChange}
+            name="message"
+            type="text"
+            className="form-control"
+            ref={inputRef}
+            isInvalid={formik.errors.request}
+          />
+          {formik.errors.request
+          && (
+            <Form.Control.Feedback type="invalid">
+              Connection problem
+            </Form.Control.Feedback>
+          )}
+        </div>
         <Button type="submit" className="btn btn-primary" disabled={isDisabledButton}>
           {formik.isSubmitting ? (
             <Spinner animation="border" role="status" variant="light" size="sm" />

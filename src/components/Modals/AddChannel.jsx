@@ -57,7 +57,7 @@ const AddChannel = (props) => {
           value={formik.values.channel}
           onChange={formik.handleChange}
           ref={inputRef}
-          isInvalid={formik.errors.channel}
+          isInvalid={formik.errors.channel || formik.errors.request}
         />
         {formik.errors.channel === 'exist'
           && (

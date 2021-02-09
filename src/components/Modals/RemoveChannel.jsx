@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import {
-  Button, Form, Modal, Spinner,
+  Button, Form, Modal, Spinner, Alert,
 } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,9 +53,9 @@ const RemoveChannel = (props) => {
       </Modal.Body>
       {formik.errors.request
       && (
-        <div className="alert alert-danger" role="alert">
+        <Alert variant="danger">
           Connection problem
-        </div>
+        </Alert>
       )}
       <Modal.Footer>
         <Button variant="secondary" type="button" onClick={onHide}>
