@@ -1,3 +1,7 @@
+import gon from 'gon';
+
+const defaultChannelId = gon.currentChannelId;
+
 const cookiesParams = {
   userName: 'userName',
 };
@@ -16,5 +20,5 @@ const socketEvents = {
 };
 
 export {
-  cookiesParams, modalKinds, socketEvents,
+  defaultChannelId, cookiesParams, modalKinds, socketEvents,
 };

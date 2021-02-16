@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Col } from 'react-bootstrap';
-import moment from 'moment';
+import { formatDistanceToNow } from 'date-fns';
 
 import MessageForm from './MessageForm';
 
 const Messages = () => {
-  const { messages, currentChannelId } = useSelector((state) => ({
-    messages: state.messages.messages,
+  const { currentChannelId } = useSelector((state) => ({
     currentChannelId: state.channels.currentChannelId,
+  }));
+  const { messages } = useSelector((state) => ({
+    messages: state.messages.messages.filter((m) => m.channelId === currentChannelId),
   }));
 
   const bottomOfChat = useRef(null);
@@ -17,17 +19,15 @@ const Messages = () => {
     bottomOfChat.current.scrollIntoView({ behavior: 'smooth' });
   });
 
-  const messagesByChannelId = messages.filter((message) => message.channelId === currentChannelId);
-
   return (
     <Col className="h-100">
       <div className="d-flex flex-column h-100">
         <div className="overflow-auto mb-3">
-          {messagesByChannelId.map((message) => {
+          {messages.map((message) => {
             const {
               id, username, body, date,
             } = message;
-            const formattedDate = moment(date).fromNow();
+            const formattedDate = formatDistanceToNow(new Date(date));
 
             return (
               <div className="d-flex justify-content-between mb-1 text-break" key={id}>

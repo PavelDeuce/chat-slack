@@ -6,6 +6,7 @@ import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import socketClient from 'socket.io-client';
 
 import App from './components/App';
 import UsernameContext from './utils/UsernameContext';
@@ -16,11 +17,10 @@ import {
 } from './store/channelsSlice';
 import { socketEvents } from './utils/appConstants';
 import getUserName from './utils/usernameCookies';
-import openSocket from './utils/openSocket';
 import '../assets/application.scss';
 
 const userName = getUserName();
-const socket = openSocket();
+const socket = socketClient();
 
 socket.on(socketEvents.newMessage, ({ data }) => {
   store.dispatch(addMessage({ newMessage: data.attributes }));

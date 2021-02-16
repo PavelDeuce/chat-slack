@@ -15,7 +15,7 @@ const MessageForm = () => {
 
   useEffect(() => {
     setInputFocus();
-  });
+  }, []);
 
   const formik = useFormik({
     initialValues: { message: '' },
@@ -30,8 +30,9 @@ const MessageForm = () => {
       };
 
       try {
-        formik.resetForm();
         await addMessageToChannel(currentChannelId, attributes);
+        formik.resetForm();
+        setInputFocus();
       } catch (error) {
         actions.setFieldError('request', error);
       }

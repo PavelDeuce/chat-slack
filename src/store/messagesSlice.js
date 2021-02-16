@@ -15,11 +15,11 @@ const messages = createSlice({
       draftState.messages.push(newMessage);
     },
   },
-  extraReducers: {
-    [removeChannel](draftState, actions) {
+  extraReducers: (builder) => {
+    builder.addCase(removeChannel, (draftState, actions) => {
       const { id } = actions.payload;
       draftState.messages = draftState.messages.filter((message) => message.channelId !== id);
-    },
+    });
   },
 });
 

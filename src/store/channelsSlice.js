@@ -2,10 +2,13 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
+import { defaultChannelId } from '../utils/appConstants';
+
 const channels = createSlice({
   name: 'channels',
   initialState: {
     channels: [],
+    currentChannelId: defaultChannelId,
   },
   reducers: {
     switchChannel(draftState, action) {

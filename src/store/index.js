@@ -22,7 +22,6 @@ const store = configureStore({
     channels: {
       channels,
       currentChannelId,
-      defaultChannelId: currentChannelId,
     },
   },
 });

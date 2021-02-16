@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeChannel } from '../../service';
 import UseFocus from '../../utils/UseFocus';
 import { switchChannel } from '../../store/channelsSlice';
+import { defaultChannelId } from '../../utils/appConstants';
 
 const RemoveChannel = (props) => {
   const dispatch = useDispatch();
   const { onHide, data } = props;
   const { id, name } = data;
 
-  const { defaultChannelId, currentChannelId } = useSelector((state) => state.channels);
+  const { currentChannelId } = useSelector((state) => state.channels);
   const [deleteButtonRef, setDeleteButtonFocus] = UseFocus();
 
   useEffect(() => {
