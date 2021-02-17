@@ -25,7 +25,7 @@ const Channels = () => {
     if (!isCurrentChannelExist) {
       dispatch(switchChannel({ id: defaultChannelId }));
     }
-  }, [channels]);
+  }, [channels, dispatch, currentChannelId]);
 
   const handleSelectChannel = (id) => {
     dispatch(switchChannel({ id: Number(id) }));

@@ -19,7 +19,7 @@ const AddChannel = (props) => {
 
   useEffect(() => {
     setInputFocus();
-  }, []);
+  }, [setInputFocus]);
 
   const formik = useFormik({
     initialValues: {

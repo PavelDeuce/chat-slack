@@ -17,7 +17,7 @@ const RenameChannel = (props) => {
 
   useEffect(() => {
     setInputFocus();
-  }, []);
+  }, [setInputFocus]);
 
   const formik = useFormik({
     initialValues: {

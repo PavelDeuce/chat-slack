@@ -15,7 +15,7 @@ const MessageForm = () => {
 
   useEffect(() => {
     setInputFocus();
-  }, []);
+  }, [setInputFocus]);
 
   const formik = useFormik({
     initialValues: { message: '' },
