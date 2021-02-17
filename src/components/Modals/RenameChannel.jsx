@@ -11,7 +11,7 @@ import UseFocus from '../../utils/UseFocus';
 
 const RenameChannel = (props) => {
   const { onHide, data } = props;
-  const { channels } = useSelector((state) => state.channels);
+  const { channels } = useSelector((state) => state.channelsState);
   const channelsNames = channels.map((ch) => ch.name);
   const [inputRef, setInputFocus] = UseFocus();
 
@@ -38,7 +38,7 @@ const RenameChannel = (props) => {
     },
   });
 
-  const isDisabledButton = formik.isSubmitting || !formik.isValid;
+  const isDisabledButton = formik.isSubmitting || formik.errors.newChannelName;
 
   return (
     <Form onSubmit={formik.handleSubmit}>

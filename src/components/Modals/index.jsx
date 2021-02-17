@@ -17,7 +17,7 @@ const modalsMap = {
 const ModalContainer = (props) => {
   const dispatch = useDispatch();
   const { kind } = props;
-  const { data, isOpen } = useSelector((state) => state.modals.modalState);
+  const { data, isOpen } = useSelector((state) => state.modalsState.modal);
   const onHide = () => dispatch(hideModal());
   const ModalContent = modalsMap[kind];
 

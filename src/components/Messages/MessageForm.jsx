@@ -10,7 +10,7 @@ import UsernameContext from '../../utils/UsernameContext';
 
 const MessageForm = () => {
   const username = useContext(UsernameContext);
-  const { currentChannelId } = useSelector((state) => state.channels);
+  const { currentChannelId } = useSelector((state) => state.channelsState);
   const [inputRef, setInputFocus] = UseFocus();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const MessageForm = () => {
     },
   });
 
-  const isDisabledButton = formik.isSubmitting || !formik.isValid;
+  const isDisabledButton = formik.isSubmitting;
 
   return (
     <div className="mt-auto mb-1">

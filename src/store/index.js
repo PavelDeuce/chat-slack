@@ -6,9 +6,9 @@ import channelsReducer from './channelsSlice';
 import modalsReducer from './modalsSlice';
 
 const reducer = {
-  messages: messagesReducer,
-  channels: channelsReducer,
-  modals: modalsReducer,
+  messagesState: messagesReducer,
+  channelsState: channelsReducer,
+  modalsState: modalsReducer,
 };
 
 const { messages, channels, currentChannelId } = gon;
@@ -16,10 +16,10 @@ const { messages, channels, currentChannelId } = gon;
 const store = configureStore({
   reducer,
   preloadedState: {
-    messages: {
+    messagesState: {
       messages,
     },
-    channels: {
+    channelsState: {
       channels,
       currentChannelId,
     },

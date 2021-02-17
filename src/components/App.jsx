@@ -7,7 +7,7 @@ import Messages from './Messages/Messages';
 import ModalContainer from './Modals';
 
 const App = () => {
-  const { kind } = useSelector((state) => state.modals.modalState);
+  const { kind } = useSelector((state) => state.modalsState.modal);
 
   const renderModal = (kindOfModal) => {
     if (!kindOfModal) {

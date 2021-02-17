@@ -7,10 +7,10 @@ import MessageForm from './MessageForm';
 
 const Messages = () => {
   const { currentChannelId } = useSelector((state) => ({
-    currentChannelId: state.channels.currentChannelId,
+    currentChannelId: state.channelsState.currentChannelId,
   }));
   const { messages } = useSelector((state) => ({
-    messages: state.messages.messages.filter((m) => m.channelId === currentChannelId),
+    messages: state.messagesState.messages.filter((m) => m.channelId === currentChannelId),
   }));
 
   const bottomOfChat = useRef(null);

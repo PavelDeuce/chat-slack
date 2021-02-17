@@ -3,7 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialModalState = {
-  modalState: {
+  modal: {
     data: null,
     isOpen: false,
     kind: null,
@@ -13,17 +13,17 @@ const initialModalState = {
 const modals = createSlice({
   name: 'modals',
   initialState: {
-    modalState: initialModalState,
+    modal: initialModalState,
   },
   reducers: {
     openModal(draftState, action) {
       const { data, kind } = action.payload;
-      draftState.modalState.data = data;
-      draftState.modalState.isOpen = true;
-      draftState.modalState.kind = kind;
+      draftState.modal.data = data;
+      draftState.modal.isOpen = true;
+      draftState.modal.kind = kind;
     },
     hideModal(draftState) {
-      draftState.modalState = initialModalState;
+      draftState.modal = initialModalState;
     },
   },
 });

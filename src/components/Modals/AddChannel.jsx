@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Modal, Form, Button, Spinner,
 } from 'react-bootstrap';
@@ -8,10 +8,12 @@ import * as Yup from 'yup';
 
 import { addChannel } from '../../service';
 import UseFocus from '../../utils/UseFocus';
+import { switchChannel } from '../../store/channelsSlice';
 
 const AddChannel = (props) => {
+  const dispatch = useDispatch();
   const { onHide } = props;
-  const { channels } = useSelector((state) => state.channels);
+  const { channels } = useSelector((state) => state.channelsState);
   const channelsNames = channels.map((ch) => ch.name);
   const [inputRef, setInputFocus] = UseFocus();
 
@@ -30,16 +32,17 @@ const AddChannel = (props) => {
       const { channel: name } = values;
 
       try {
+        const { data } = await addChannel(name);
         actions.resetForm();
-        await addChannel(name);
         onHide();
+        dispatch(switchChannel({ id: data.data.id }));
       } catch (error) {
         actions.setFieldError('request', error);
       }
     },
   });
 
-  const isDisabledButton = formik.isSubmitting || !formik.isValid;
+  const isDisabledButton = formik.isSubmitting || formik.errors.channel;
 
   return (
     <Form onSubmit={formik.handleSubmit}>

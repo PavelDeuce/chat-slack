@@ -15,7 +15,7 @@ const RemoveChannel = (props) => {
   const { onHide, data } = props;
   const { id, name } = data;
 
-  const { currentChannelId } = useSelector((state) => state.channels);
+  const { currentChannelId } = useSelector((state) => state.channelsState);
   const [deleteButtonRef, setDeleteButtonFocus] = UseFocus();
 
   useEffect(() => {
