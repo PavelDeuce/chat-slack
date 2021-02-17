@@ -8,6 +8,10 @@ extends:
   - "plugin:jest/recommended"
   - "plugin:functional/external-recommended"
   - "plugin:functional/recommended"
+  - "plugin:import/errors"
+  - "plugin:import/warnings"
+  - "plugin:react/recommended"
+  - "plugin:react-hooks/recommended"
 #  - "plugin:prettier/recommended"
 
 parser: babel-eslint
