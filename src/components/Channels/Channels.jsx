@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Col,
   Dropdown,
@@ -14,18 +14,11 @@ import classnames from 'classnames';
 
 import { switchChannel } from '../../store/channelsSlice';
 import { openModal } from '../../store/modalsSlice';
-import { modalKinds, defaultChannelId } from '../../utils/appConstants';
+import { modalKinds } from '../../utils/appConstants';
 
 const Channels = () => {
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsState);
-
-  useEffect(() => {
-    const isCurrentChannelExist = channels.find((ch) => ch.id === currentChannelId);
-    if (!isCurrentChannelExist) {
-      dispatch(switchChannel({ id: defaultChannelId }));
-    }
-  }, [channels, dispatch, currentChannelId]);
 
   const handleSelectChannel = (id) => {
     dispatch(switchChannel({ id: Number(id) }));
