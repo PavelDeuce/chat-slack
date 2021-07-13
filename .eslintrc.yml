@@ -12,7 +12,7 @@ extends:
   - "plugin:import/warnings"
   - "plugin:react/recommended"
   - "plugin:react-hooks/recommended"
-#  - "plugin:prettier/recommended"
+  - "plugin:prettier/recommended"
 
 parser: babel-eslint
 
