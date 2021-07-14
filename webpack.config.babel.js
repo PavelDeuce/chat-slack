@@ -23,9 +23,7 @@ module.exports = {
     publicPath: '/assets/',
     compress: true,
   },
-  plugins: [
-    new MiniCssExtractPlugin(),
-  ],
+  plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [
       {

@@ -48,7 +48,11 @@ export default (app, io, defaultState = {}) => {
       reply.send(response);
     })
     .post('/api/v1/channels', (req, reply) => {
-      const { data: { attributes: { name } } } = req.body;
+      const {
+        data: {
+          attributes: { name },
+        },
+      } = req.body;
       const channel = {
         name,
         removable: true,
@@ -86,7 +90,9 @@ export default (app, io, defaultState = {}) => {
       const channelId = Number(req.params.id);
       const channel = state.channels.find((c) => c.id === channelId);
 
-      const { data: { attributes } } = req.body;
+      const {
+        data: { attributes },
+      } = req.body;
       channel.name = attributes.name;
 
       const data = {
@@ -112,7 +118,9 @@ export default (app, io, defaultState = {}) => {
       reply.send(response);
     })
     .post('/api/v1/channels/:channelId/messages', (req, reply) => {
-      const { data: { attributes } } = req.body;
+      const {
+        data: { attributes },
+      } = req.body;
       const message = {
         ...attributes,
         channelId: Number(req.params.channelId),

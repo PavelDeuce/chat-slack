@@ -37,8 +37,6 @@ const channels = createSlice({
 
 const { actions, reducer } = channels;
 
-export const {
-  switchChannel, addChannel, renameChannel, removeChannel,
-} = actions;
+export const { switchChannel, addChannel, renameChannel, removeChannel } = actions;
 
 export default reducer;

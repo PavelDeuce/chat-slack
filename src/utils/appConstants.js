@@ -19,6 +19,4 @@ const socketEvents = {
   renameChannel: 'renameChannel',
 };
 
-export {
-  defaultChannelId, cookiesParams, modalKinds, socketEvents,
-};
+export { defaultChannelId, cookiesParams, modalKinds, socketEvents };

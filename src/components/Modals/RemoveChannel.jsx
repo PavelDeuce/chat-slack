@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
-import {
-  Button, Form, Modal, Spinner, Alert,
-} from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { Button, Form, Modal, Spinner, Alert } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { removeChannel } from '../../service';
@@ -12,6 +11,7 @@ import { defaultChannelId } from '../../utils/appConstants';
 
 const RemoveChannel = (props) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { onHide, data } = props;
   const { id, name } = data;
 
@@ -41,32 +41,27 @@ const RemoveChannel = (props) => {
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Modal.Header>
-        <Modal.Title>Remove channel</Modal.Title>
+        <Modal.Title>{t('modals.remove')}</Modal.Title>
         <Button type="button" className="close" onClick={onHide}>
           ×
         </Button>
       </Modal.Header>
       <Modal.Body>
-        Do you want to delete a channel with name
+        {t('modals.confirmation')}
         {' - '}
         {name}
         {'?'}
       </Modal.Body>
-      {formik.errors.request
-      && (
-        <Alert variant="danger">
-          Connection problem
-        </Alert>
-      )}
+      {formik.errors.request && <Alert variant="danger">{t('errors.connection')}</Alert>}
       <Modal.Footer>
         <Button variant="secondary" type="button" onClick={onHide}>
-          Cancel
+          {t('modals.cancel')}
         </Button>
         <Button variant="danger" type="submit" ref={deleteButtonRef} disabled={formik.isSubmitting}>
           {formik.isSubmitting ? (
             <Spinner animation="border" role="status" variant="light" size="sm" />
           ) : (
-            'Delete'
+            t('modals.confirm')
           )}
         </Button>
       </Modal.Footer>

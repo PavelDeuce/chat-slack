@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  Button, Form, Modal, Spinner,
-} from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 import * as Yup from 'yup';
 
 import { useFormik } from 'formik';
@@ -11,6 +10,7 @@ import UseFocus from '../../utils/UseFocus';
 
 const RenameChannel = (props) => {
   const { onHide, data } = props;
+  const { t } = useTranslation();
   const { channels } = useSelector((state) => state.channelsState);
   const channelsNames = channels.map((ch) => ch.name);
   const [inputRef, setInputFocus] = UseFocus();
@@ -43,14 +43,14 @@ const RenameChannel = (props) => {
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Modal.Header>
-        <Modal.Title>Rename channel</Modal.Title>
+        <Modal.Title>{t('modals.rename')}</Modal.Title>
         <Button type="button" className="close" onClick={onHide}>
           ×
         </Button>
       </Modal.Header>
       <Modal.Body>
         <Form.Control
-          placeholder="Rename channel"
+          placeholder={t('modals.form.placeholder')}
           name="newChannelName"
           className="formControl"
           value={formik.values.newChannelName}
@@ -58,28 +58,25 @@ const RenameChannel = (props) => {
           ref={inputRef}
           isInvalid={formik.errors.newChannelName || formik.errors.request}
         />
-        {formik.errors.newChannelName === 'exist'
-        && (
-          <Form.Control.Feedback type="invalid">
-            The channel with this name already exists
-          </Form.Control.Feedback>
+        {formik.errors.newChannelName === 'required' && (
+          <Form.Control.Feedback type="invalid">{t('modals.form.required')}</Form.Control.Feedback>
         )}
-        {formik.errors.request
-        && (
-          <Form.Control.Feedback type="invalid">
-            Connection problem
-          </Form.Control.Feedback>
+        {formik.errors.newChannelName === 'exist' && (
+          <Form.Control.Feedback type="invalid">{t('modals.form.uniq')}</Form.Control.Feedback>
+        )}
+        {formik.errors.request && (
+          <Form.Control.Feedback type="invalid">{t('errors.connection')}</Form.Control.Feedback>
         )}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" type="button" onClick={onHide}>
-          Cancel
+          {t('modals.cancel')}
         </Button>
         <Button variant="primary" type="submit" disabled={isDisabledButton}>
           {formik.isSubmitting ? (
             <Spinner animation="border" role="status" variant="light" size="sm" />
           ) : (
-            'Rename'
+            t('modals.submit')
           )}
         </Button>
       </Modal.Footer>

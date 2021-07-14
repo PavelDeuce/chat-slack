@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { Button, Form, Spinner } from 'react-bootstrap';
@@ -9,6 +10,7 @@ import UseFocus from '../../utils/UseFocus';
 import UsernameContext from '../../utils/UsernameContext';
 
 const MessageForm = () => {
+  const { t } = useTranslation();
   const username = useContext(UsernameContext);
   const { currentChannelId } = useSelector((state) => state.channelsState);
   const [inputRef, setInputFocus] = UseFocus();
@@ -42,7 +44,7 @@ const MessageForm = () => {
   const isDisabledButton = formik.isSubmitting;
 
   return (
-    <div className="mt-auto mb-1">
+    <div className="mt-auto mb-1 p-2">
       <Form className="d-flex align-items-baseline" onSubmit={formik.handleSubmit}>
         <div className="input-form-group mr-2">
           <Form.Control
@@ -54,18 +56,15 @@ const MessageForm = () => {
             ref={inputRef}
             isInvalid={formik.errors.request}
           />
-          {formik.errors.request
-          && (
-            <Form.Control.Feedback type="invalid">
-              Connection problem
-            </Form.Control.Feedback>
+          {formik.errors.request && (
+            <Form.Control.Feedback type="invalid">Connection problem</Form.Control.Feedback>
           )}
         </div>
         <Button type="submit" className="btn btn-primary" disabled={isDisabledButton}>
           {formik.isSubmitting ? (
             <Spinner animation="border" role="status" variant="light" size="sm" />
           ) : (
-            'Submit'
+            t('chat.send')
           )}
         </Button>
       </Form>

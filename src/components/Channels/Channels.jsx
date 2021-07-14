@@ -1,15 +1,7 @@
 import React from 'react';
-import {
-  Col,
-  Dropdown,
-  Nav,
-  NavItem,
-  NavLink,
-  Button,
-  ButtonGroup,
-  Container,
-} from 'react-bootstrap';
+import { Dropdown, Nav, NavItem, NavLink, Button, ButtonGroup, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 
 import { switchChannel } from '../../store/channelsSlice';
@@ -18,6 +10,7 @@ import { modalKinds } from '../../utils/appConstants';
 
 const Channels = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { channels, currentChannelId } = useSelector((state) => state.channelsState);
 
   const handleSelectChannel = (id) => {
@@ -33,11 +26,11 @@ const Channels = () => {
   };
 
   return (
-    <Col className="col-3 border-right h-100 overflow-auto">
-      <Container className="d-flex mb-2">
-        <span className="font-weight-bold">Channels</span>
+    <>
+      <Container className="d-flex mb-2 mt-3">
+        <span className="font-weight-bold">{t('channels.channels')}</span>
         <Button
-          variant="light"
+          variant="outline-primary"
           type="button"
           className="ml-auto pt-0 pb-0 pl-1 pr-1"
           onClick={handleAddChannel}
@@ -65,7 +58,10 @@ const Channels = () => {
                 eventKey={id}
                 className={classnames(btnTypeClass, 'w-100 text-break rounded-0')}
               >
-                <span>{name}</span>
+                <span>
+                  {'# '}
+                  {name}
+                </span>
               </NavLink>
               {removable && (
                 <Dropdown>
@@ -78,13 +74,13 @@ const Channels = () => {
                     <Dropdown.Item
                       onClick={handleChangeChannel(id, name, modalKinds.renameChannel)}
                     >
-                      Rename
+                      {t('channels.rename')}
                     </Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item
                       onClick={handleChangeChannel(id, name, modalKinds.removeChannel)}
                     >
-                      Remove
+                      {t('channels.remove')}
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
@@ -93,7 +89,7 @@ const Channels = () => {
           );
         })}
       </Nav>
-    </Col>
+    </>
   );
 };
 
