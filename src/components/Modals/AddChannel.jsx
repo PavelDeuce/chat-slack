@@ -7,8 +7,7 @@ import * as Yup from 'yup';
 
 import { addChannel } from '../../service';
 import UseFocus from '../../hooks/UseFocus';
-import { switchChannel } from '../../store/channelsSlice';
-import { getChannelsNames } from '../../store';
+import { getChannelsNames, actions as chatActions } from '../../store';
 
 const AddChannel = ({ onHide }) => {
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ const AddChannel = ({ onHide }) => {
         const { data } = await addChannel(name);
         actions.resetForm();
         onHide();
-        dispatch(switchChannel({ id: data.data.id }));
+        dispatch(chatActions.switchChannel({ id: data.data.id }));
       } catch (error) {
         actions.setFieldError('request', error);
       }

@@ -5,9 +5,8 @@ import { Modal } from 'react-bootstrap';
 import AddChannel from './AddChannel';
 import RenameChannel from './RenameChannel';
 import RemoveChannel from './RemoveChannel';
-import { hideModal } from '../../store/modalsSlice';
+import { actions, getModalsInfo } from '../../store';
 import { modalKinds } from '../../constants';
-import { getModalsInfo } from '../../store';
 
 const modalsMap = {
   [modalKinds.addChannel]: AddChannel,
@@ -18,7 +17,7 @@ const modalsMap = {
 const ModalContainer = ({ kind }) => {
   const dispatch = useDispatch();
   const { data, isOpen } = useSelector(getModalsInfo);
-  const onHide = () => dispatch(hideModal());
+  const onHide = () => dispatch(actions.hideModal());
   const ModalContent = modalsMap[kind];
 
   return (

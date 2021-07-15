@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
 import gon from 'gon';
+import { configureStore } from '@reduxjs/toolkit';
 
-import messagesReducer from './messagesSlice';
-import channelsReducer from './channelsSlice';
-import modalsReducer from './modalsSlice';
+import messagesReducer, { actions as messagesActions } from './messagesSlice';
+import channelsReducer, { actions as channelsActions } from './channelsSlice';
+import modalsReducer, { actions as modalActions } from './modalsSlice';
 
 const reducer = {
   messagesState: messagesReducer,
@@ -26,6 +26,12 @@ const store = configureStore({
   },
 });
 
-export default store;
+const actions = {
+  ...channelsActions,
+  ...messagesActions,
+  ...modalActions,
+};
 
+export default store;
+export { actions };
 export * from './selectors';

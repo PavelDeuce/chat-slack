@@ -2,9 +2,9 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { removeChannel } from './channelsSlice';
+import { actions as channelsActions } from './channelsSlice';
 
-const messages = createSlice({
+const messagesSlice = createSlice({
   name: 'messagesInfo',
   initialState: {
     messages: [],
@@ -16,15 +16,12 @@ const messages = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(removeChannel, (draftState, actions) => {
+    builder.addCase(channelsActions.removeChannel, (draftState, actions) => {
       const { id } = actions.payload;
       draftState.messages = draftState.messages.filter((message) => message.channelId !== id);
     });
   },
 });
 
-const { actions, reducer } = messages;
-
-export const { addMessage } = actions;
-
-export default reducer;
+export const { actions } = messagesSlice;
+export default messagesSlice.reducer;

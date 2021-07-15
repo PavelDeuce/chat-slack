@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import Channel from './Channel';
-import { switchChannel } from '../../store/channelsSlice';
-import { openModal } from '../../store/modalsSlice';
-import { getChannelsInfo } from '../../store';
+import { actions, getChannelsInfo } from '../../store';
 import { modalKinds } from '../../constants';
 
 const Channels = () => {
@@ -15,15 +13,15 @@ const Channels = () => {
   const { channels, currentChannelId } = useSelector(getChannelsInfo);
 
   const handleSelectChannel = (id) => {
-    dispatch(switchChannel({ id: Number(id) }));
+    dispatch(actions.switchChannel({ id: Number(id) }));
   };
 
   const handleAddChannel = () => {
-    dispatch(openModal({ data: {}, kind: modalKinds.addChannel }));
+    dispatch(actions.openModal({ data: {}, kind: modalKinds.addChannel }));
   };
 
   const handleChangeChannel = (id, name, kind) => () => {
-    dispatch(openModal({ data: { id, name }, kind }));
+    dispatch(actions.openModal({ data: { id, name }, kind }));
   };
 
   return (

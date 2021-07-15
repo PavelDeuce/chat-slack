@@ -6,7 +6,7 @@ import { Button, Form, Modal, Spinner, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeChannel } from '../../service';
 import UseFocus from '../../hooks/UseFocus';
-import { switchChannel } from '../../store/channelsSlice';
+import { actions as chatActions } from '../../store';
 import { defaultChannelId } from '../../constants';
 
 const RemoveChannel = ({ onHide, data }) => {
@@ -29,7 +29,7 @@ const RemoveChannel = ({ onHide, data }) => {
         onHide();
 
         if (id === currentChannelId) {
-          dispatch(switchChannel({ id: defaultChannelId }));
+          dispatch(chatActions.switchChannel({ id: defaultChannelId }));
         }
       } catch (error) {
         actions.setFieldError('request', error);

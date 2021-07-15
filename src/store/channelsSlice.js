@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { defaultChannelId } from '../constants';
 
-const channels = createSlice({
+const channelsSlice = createSlice({
   name: 'channelsInfo',
   initialState: {
     channels: [],
@@ -35,8 +35,5 @@ const channels = createSlice({
   },
 });
 
-const { actions, reducer } = channels;
-
-export const { switchChannel, addChannel, renameChannel, removeChannel } = actions;
-
-export default reducer;
+export const { actions } = channelsSlice;
+export default channelsSlice.reducer;

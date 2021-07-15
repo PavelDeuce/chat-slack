@@ -10,7 +10,7 @@ const initialModalState = {
   },
 };
 
-const modals = createSlice({
+const modalsSlice = createSlice({
   name: 'modalsInfo',
   initialState: {
     modal: initialModalState,
@@ -28,8 +28,5 @@ const modals = createSlice({
   },
 });
 
-const { actions, reducer } = modals;
-
-export const { openModal, hideModal } = actions;
-
-export default reducer;
+export const { actions } = modalsSlice;
+export default modalsSlice.reducer;
