@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonGroup, Dropdown, NavItem, NavLink } from 'react-bootstrap';
 import classnames from 'classnames';
 
-import { modalKinds } from '../../utils/appConstants';
+import { modalKinds } from '../../constants';
 
 const Channel = ({ channel, isCurrent, handleChangeChannel }) => {
   const { id, name, removable } = channel;

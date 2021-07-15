@@ -5,9 +5,9 @@ import { Button, Form, Modal, Spinner, Alert } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { removeChannel } from '../../service';
-import UseFocus from '../../utils/UseFocus';
+import UseFocus from '../../hooks/UseFocus';
 import { switchChannel } from '../../store/channelsSlice';
-import { defaultChannelId } from '../../utils/appConstants';
+import { defaultChannelId } from '../../constants';
 
 const RemoveChannel = ({ onHide, data }) => {
   const dispatch = useDispatch();

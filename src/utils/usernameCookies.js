@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import faker from 'faker';
 
-import { cookiesParams } from './appConstants';
+import { cookiesParams } from '../constants';
 
 const getUserName = () => {
   const savedUserName = Cookies.get(cookiesParams.userName);

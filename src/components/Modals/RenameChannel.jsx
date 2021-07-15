@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import { useFormik } from 'formik';
 import { updateChannel } from '../../service';
-import UseFocus from '../../utils/UseFocus';
+import UseFocus from '../../hooks/UseFocus';
 import { getChannelsNames } from '../../store';
 
 const RenameChannel = ({ onHide, data }) => {

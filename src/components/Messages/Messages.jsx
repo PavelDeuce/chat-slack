@@ -11,9 +11,10 @@ const Messages = () => {
   const { t } = useTranslation();
   const currentChannel = useSelector(getCurrentChannel);
   const messages = useSelector(getMessagesForCurrentChannel);
+  const messagesContainerId = 'messages-container';
 
   useEffect(() => {
-    animateScroll.scrollToBottom({ containerId: 'messages-container', delay: 0, duration: 300 });
+    animateScroll.scrollToBottom({ containerId: messagesContainerId, delay: 0, duration: 300 });
   }, [messages.length]);
 
   return (
@@ -24,7 +25,7 @@ const Messages = () => {
           <span className="text-muted">{`${messages.length} ${t('chat.messages')}`}</span>
         </div>
       </div>
-      <div id="messages-container" className="overflow-auto mb-3 px-5">
+      <div id={messagesContainerId} className="overflow-auto mb-3 px-5">
         {messages.map(({ id, username, body, date }) => (
           <Message key={id} username={username} body={body} date={date} />
         ))}

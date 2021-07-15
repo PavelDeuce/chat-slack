@@ -6,8 +6,8 @@ import { Button, Form, Spinner } from 'react-bootstrap';
 import * as Yup from 'yup';
 
 import { addMessageToChannel } from '../../service';
-import UseFocus from '../../utils/UseFocus';
-import UsernameContext from '../../utils/UsernameContext';
+import UseFocus from '../../hooks/UseFocus';
+import UsernameContext from '../../contexts/UsernameContext';
 import { getChannelsInfo } from '../../store';
 
 const MessageForm = () => {

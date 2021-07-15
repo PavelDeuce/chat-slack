@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { addChannel } from '../../service';
-import UseFocus from '../../utils/UseFocus';
+import UseFocus from '../../hooks/UseFocus';
 import { switchChannel } from '../../store/channelsSlice';
 import { getChannelsNames } from '../../store';
 

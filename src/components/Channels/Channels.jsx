@@ -7,7 +7,7 @@ import Channel from './Channel';
 import { switchChannel } from '../../store/channelsSlice';
 import { openModal } from '../../store/modalsSlice';
 import { getChannelsInfo } from '../../store';
-import { modalKinds } from '../../utils/appConstants';
+import { modalKinds } from '../../constants';
 
 const Channels = () => {
   const dispatch = useDispatch();

@@ -4,11 +4,11 @@ import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 
 import App from './components/App';
-import UsernameContext from './utils/UsernameContext';
+import UsernameContext from './contexts/UsernameContext';
 import getUserName from './utils/usernameCookies';
 import store from './store/index';
 import resources from './locales';
-import { socketEvents } from './utils/appConstants';
+import { socketEvents } from './constants';
 import { addMessage } from './store/messagesSlice';
 import { addChannel, removeChannel, renameChannel } from './store/channelsSlice';
 

@@ -6,7 +6,7 @@ import AddChannel from './AddChannel';
 import RenameChannel from './RenameChannel';
 import RemoveChannel from './RemoveChannel';
 import { hideModal } from '../../store/modalsSlice';
-import { modalKinds } from '../../utils/appConstants';
+import { modalKinds } from '../../constants';
 import { getModalsInfo } from '../../store';
 
 const modalsMap = {
