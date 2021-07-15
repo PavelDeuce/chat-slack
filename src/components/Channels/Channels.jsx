@@ -1,13 +1,13 @@
 import React from 'react';
-import { Dropdown, Nav, NavItem, NavLink, Button, ButtonGroup, Container } from 'react-bootstrap';
+import { Nav, Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import classnames from 'classnames';
 
+import Channel from './Channel';
 import { switchChannel } from '../../store/channelsSlice';
 import { openModal } from '../../store/modalsSlice';
-import { modalKinds } from '../../utils/appConstants';
 import { getChannelsInfo } from '../../store';
+import { modalKinds } from '../../utils/appConstants';
 
 const Channels = () => {
   const dispatch = useDispatch();
@@ -45,50 +45,14 @@ const Channels = () => {
         activeKey={currentChannelId}
         onSelect={handleSelectChannel}
       >
-        {channels.map((channel) => {
-          const { id, name, removable } = channel;
-          const btnTypeClass = id === currentChannelId ? '' : 'btn-light';
-
-          return (
-            <NavItem
-              key={id}
-              as={ButtonGroup}
-              className="d-flex justify-content-between mb-1 text-left"
-            >
-              <NavLink
-                eventKey={id}
-                className={classnames(btnTypeClass, 'w-100 text-break rounded-0')}
-              >
-                <span>
-                  {'# '}
-                  {name}
-                </span>
-              </NavLink>
-              {removable && (
-                <Dropdown>
-                  <Dropdown.Toggle
-                    id={id}
-                    className={classnames(btnTypeClass, 'h-100 rounded-0')}
-                  />
-
-                  <Dropdown.Menu>
-                    <Dropdown.Item
-                      onClick={handleChangeChannel(id, name, modalKinds.renameChannel)}
-                    >
-                      {t('channels.rename')}
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item
-                      onClick={handleChangeChannel(id, name, modalKinds.removeChannel)}
-                    >
-                      {t('channels.remove')}
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
-            </NavItem>
-          );
-        })}
+        {channels.map((channel) => (
+          <Channel
+            key={channel.id}
+            isCurrent={channel.id === currentChannelId}
+            channel={channel}
+            handleChangeChannel={handleChangeChannel}
+          />
+        ))}
       </Nav>
     </>
   );
