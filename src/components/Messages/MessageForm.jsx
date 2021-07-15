@@ -8,11 +8,12 @@ import * as Yup from 'yup';
 import { addMessageToChannel } from '../../service';
 import UseFocus from '../../utils/UseFocus';
 import UsernameContext from '../../utils/UsernameContext';
+import { getChannelsInfo } from '../../store';
 
 const MessageForm = () => {
   const { t } = useTranslation();
   const username = useContext(UsernameContext);
-  const { currentChannelId } = useSelector((state) => state.channelsState);
+  const { currentChannelId } = useSelector(getChannelsInfo);
   const [inputRef, setInputFocus] = UseFocus();
 
   useEffect(() => {

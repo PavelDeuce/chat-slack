@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { formatDistanceToNow } from 'date-fns';
 
+import Message from './Message';
 import MessageForm from './MessageForm';
 import { getMessagesForCurrentChannel, getCurrentChannel } from '../../store';
 
@@ -25,23 +25,9 @@ const Messages = () => {
         </div>
       </div>
       <div className="overflow-auto mb-3 px-5">
-        {messages.map((message) => {
-          const { id, username, body, date } = message;
-          const formattedDate = formatDistanceToNow(new Date(date));
-
-          return (
-            <div className="d-flex justify-content-between mb-1 text-break" key={id}>
-              <>
-                <span className="w-75">
-                  <b>{username}</b>
-                  {': '}
-                  {body}
-                </span>
-                <span className="pr-3 text-muted">{formattedDate}</span>
-              </>
-            </div>
-          );
-        })}
+        {messages.map(({ id, username, body, date }) => (
+          <Message key={id} username={username} body={body} date={date} />
+        ))}
         <div ref={bottomOfChat} />
       </div>
       <MessageForm />

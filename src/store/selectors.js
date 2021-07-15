@@ -21,10 +21,13 @@ const getChannelById = (channelId) => (state) => {
   return channels.find(({ id }) => channelId === id);
 };
 
+const getModalsInfo = (state) => state.modalsState.modal;
+
 export {
   getChannelsInfo,
   getChannelById,
   getChannelsNames,
   getMessagesForCurrentChannel,
   getCurrentChannel,
+  getModalsInfo,
 };

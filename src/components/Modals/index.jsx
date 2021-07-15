@@ -7,6 +7,7 @@ import RenameChannel from './RenameChannel';
 import RemoveChannel from './RemoveChannel';
 import { hideModal } from '../../store/modalsSlice';
 import { modalKinds } from '../../utils/appConstants';
+import { getModalsInfo } from '../../store';
 
 const modalsMap = {
   [modalKinds.addChannel]: AddChannel,
@@ -14,10 +15,9 @@ const modalsMap = {
   [modalKinds.removeChannel]: RemoveChannel,
 };
 
-const ModalContainer = (props) => {
+const ModalContainer = ({ kind }) => {
   const dispatch = useDispatch();
-  const { kind } = props;
-  const { data, isOpen } = useSelector((state) => state.modalsState.modal);
+  const { data, isOpen } = useSelector(getModalsInfo);
   const onHide = () => dispatch(hideModal());
   const ModalContent = modalsMap[kind];
 
