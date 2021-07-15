@@ -7,12 +7,11 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { updateChannel } from '../../service';
 import UseFocus from '../../utils/UseFocus';
+import { getChannelsNames } from '../../store';
 
-const RenameChannel = (props) => {
-  const { onHide, data } = props;
+const RenameChannel = ({ onHide, data }) => {
   const { t } = useTranslation();
-  const { channels } = useSelector((state) => state.channelsState);
-  const channelsNames = channels.map((ch) => ch.name);
+  const channelsNames = useSelector(getChannelsNames);
   const [inputRef, setInputFocus] = UseFocus();
 
   useEffect(() => {

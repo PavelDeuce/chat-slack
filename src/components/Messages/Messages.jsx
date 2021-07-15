@@ -4,19 +4,12 @@ import { useSelector } from 'react-redux';
 import { formatDistanceToNow } from 'date-fns';
 
 import MessageForm from './MessageForm';
+import { getMessagesForCurrentChannel, getCurrentChannel } from '../../store';
 
 const Messages = () => {
   const { t } = useTranslation();
-  const { currentChannelId, currentChannelName } = useSelector((state) => ({
-    currentChannelId: state.channelsState.currentChannelId,
-    currentChannelName: state.channelsState.channels.find(
-      (ch) => ch.id === state.channelsState.currentChannelId
-    ).name,
-  }));
-  const { messages } = useSelector((state) => ({
-    messages: state.messagesState.messages.filter((m) => m.channelId === currentChannelId),
-  }));
-
+  const currentChannel = useSelector(getCurrentChannel);
+  const messages = useSelector(getMessagesForCurrentChannel);
   const bottomOfChat = useRef(null);
 
   useEffect(() => {
@@ -27,7 +20,7 @@ const Messages = () => {
     <div className="d-flex flex-column h-100">
       <div className="mb-4 p-3 bg-light shadow-sm">
         <div className="d-flex flex-column h-100">
-          <b className="m-0">{`# ${currentChannelName}`}</b>
+          <b className="m-0">{`# ${currentChannel.name}`}</b>
           <span className="text-muted">{`${messages.length} ${t('chat.messages')}`}</span>
         </div>
       </div>

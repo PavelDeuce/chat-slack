@@ -7,11 +7,12 @@ import classnames from 'classnames';
 import { switchChannel } from '../../store/channelsSlice';
 import { openModal } from '../../store/modalsSlice';
 import { modalKinds } from '../../utils/appConstants';
+import { getChannelsInfo } from '../../store';
 
 const Channels = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { channels, currentChannelId } = useSelector((state) => state.channelsState);
+  const { channels, currentChannelId } = useSelector(getChannelsInfo);
 
   const handleSelectChannel = (id) => {
     dispatch(switchChannel({ id: Number(id) }));

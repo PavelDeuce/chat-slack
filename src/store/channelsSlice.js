@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { defaultChannelId } from '../utils/appConstants';
 
 const channels = createSlice({
-  name: 'channels',
+  name: 'channelsInfo',
   initialState: {
     channels: [],
     currentChannelId: defaultChannelId,

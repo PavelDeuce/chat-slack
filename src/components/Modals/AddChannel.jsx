@@ -8,13 +8,12 @@ import * as Yup from 'yup';
 import { addChannel } from '../../service';
 import UseFocus from '../../utils/UseFocus';
 import { switchChannel } from '../../store/channelsSlice';
+import { getChannelsNames } from '../../store';
 
-const AddChannel = (props) => {
+const AddChannel = ({ onHide }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { onHide } = props;
-  const { channels } = useSelector((state) => state.channelsState);
-  const channelsNames = channels.map((ch) => ch.name);
+  const channelsNames = useSelector(getChannelsNames);
   const [inputRef, setInputFocus] = UseFocus();
 
   useEffect(() => {

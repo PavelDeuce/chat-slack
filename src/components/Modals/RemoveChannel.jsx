@@ -9,10 +9,9 @@ import UseFocus from '../../utils/UseFocus';
 import { switchChannel } from '../../store/channelsSlice';
 import { defaultChannelId } from '../../utils/appConstants';
 
-const RemoveChannel = (props) => {
+const RemoveChannel = ({ onHide, data }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { onHide, data } = props;
   const { id, name } = data;
 
   const { currentChannelId } = useSelector((state) => state.channelsState);

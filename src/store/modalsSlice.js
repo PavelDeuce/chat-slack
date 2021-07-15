@@ -11,7 +11,7 @@ const initialModalState = {
 };
 
 const modals = createSlice({
-  name: 'modals',
+  name: 'modalsInfo',
   initialState: {
     modal: initialModalState,
   },
