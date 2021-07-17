@@ -22,7 +22,7 @@ const Messages = () => {
       <div className="mb-4 p-3 bg-light shadow-sm">
         <div className="d-flex flex-column h-100">
           <b className="m-0">{`# ${currentChannel.name}`}</b>
-          <span className="text-muted">{`${messages.length} ${t('chat.messages')}`}</span>
+          <span className="text-muted">{t('chat.messages', { count: messages.length })}</span>
         </div>
       </div>
       <div id={messagesContainerId} className="overflow-auto mb-3 px-5">

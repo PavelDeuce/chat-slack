@@ -7,7 +7,8 @@ export default {
       rename: 'Rename',
     },
     chat: {
-      messages: 'messages',
+      messages: '{{ count }} message',
+      messages_plural: '{{ count }} messages',
       send: 'Send',
     },
     modals: {

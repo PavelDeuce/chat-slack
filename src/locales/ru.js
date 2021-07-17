@@ -7,7 +7,9 @@ export default {
       rename: 'Переименовать',
     },
     chat: {
-      messages: 'сообщений',
+      messages: '{{ count }} сообщений',
+      messages_0: '{{ count }} сообщение',
+      messages_1: '{{ count }} сообщения',
       send: 'Отправить',
     },
     modals: {
