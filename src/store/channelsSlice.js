@@ -2,7 +2,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { defaultChannelId } from '../constants';
+import { defaultChannelId } from '../constants.js';
 
 const channelsSlice = createSlice({
   name: 'channelsInfo',
@@ -11,13 +11,19 @@ const channelsSlice = createSlice({
     currentChannelId: defaultChannelId,
   },
   reducers: {
+    setInitialState(state, { payload }) {
+      const { channels, currentChannelId } = payload;
+      state.channels = channels;
+      state.currentChannelId = currentChannelId;
+    },
     switchChannel(draftState, action) {
       const { id } = action.payload;
       draftState.currentChannelId = id;
     },
     addChannel(draftState, action) {
-      const { newChannel } = action.payload;
+      const newChannel = action.payload;
       draftState.channels.push(newChannel);
+      draftState.currentChannelId = newChannel.id;
     },
     renameChannel(draftState, action) {
       const { id, name } = action.payload;

@@ -1,16 +1,18 @@
 import axios from 'axios';
 
-import routes from './routes';
-import transformDataForServer from './utils/transformDataForServer';
+import routes from './routes.js';
+import getAuthHeader from './utils/getAuthHeader.js';
 
-const addChannel = (name) => axios.post(routes.channelsPath(), transformDataForServer({ name }));
+const logIn = (logInData) => {
+  return axios.post(routes.logInPath(), logInData);
+};
 
-const removeChannel = (channelId) => axios.delete(routes.channelPath(channelId));
+const signUp = (signUpData) => {
+  return axios.post(routes.signUpPath(), signUpData);
+};
 
-const updateChannel = (channelId, name) =>
-  axios.patch(routes.channelPath(channelId), transformDataForServer({ name }));
+const getChatData = () => {
+  return axios.get(routes.dataPath(), { headers: getAuthHeader() });
+};
 
-const addMessageToChannel = (channelId, attributes) =>
-  axios.post(routes.channelMessagesPath(channelId), transformDataForServer({ ...attributes }));
-
-export { addChannel, removeChannel, updateChannel, addMessageToChannel };
+export { getChatData, logIn, signUp };

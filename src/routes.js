@@ -1,10 +1,13 @@
 // @ts-check
 
-const host = '';
-const prefix = 'api/v1';
+const apiPath = '/api/v1';
 
 export default {
-  channelsPath: () => [host, prefix, 'channels'].join('/'),
-  channelPath: (id) => [host, prefix, 'channels', id].join('/'),
-  channelMessagesPath: (id) => [host, prefix, 'channels', id, 'messages'].join('/'),
+  logInPath: () => [apiPath, 'login'].join('/'),
+  signUpPath: () => [apiPath, 'signup'].join('/'),
+  dataPath: () => [apiPath, 'data'].join('/'),
+  chatPagePath: () => '/',
+  loginPagePath: () => '/login',
+  signupPagePath: () => '/signup',
+  aboutPagePath: () => '/about',
 };
